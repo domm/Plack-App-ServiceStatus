@@ -1,4 +1,4 @@
-package Plack::App::Status::Elasticsearch;
+package Plack::App::ServiceStatus::Elasticsearch;
 use 5.018;
 use strict;
 use warnings;

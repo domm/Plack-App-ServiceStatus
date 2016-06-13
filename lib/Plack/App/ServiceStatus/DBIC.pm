@@ -1,4 +1,4 @@
-package Plack::App::Status::DBIC;
+package Plack::App::ServiceStatus::DBIC;
 use 5.018;
 use strict;
 use warnings;

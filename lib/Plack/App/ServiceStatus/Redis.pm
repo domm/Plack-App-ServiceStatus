@@ -1,4 +1,4 @@
-package Plack::App::Status::Redis;
+package Plack::App::ServiceStatus::Redis;
 use 5.018;
 use strict;
 use warnings;

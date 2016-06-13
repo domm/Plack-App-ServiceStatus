@@ -1,4 +1,4 @@
-package Plack::App::Status;
+package Plack::App::ServiceStatus;
 use 5.018;
 use strict;
 use warnings;
@@ -29,7 +29,7 @@ sub new {
             $module=~s/^\+//;
         }
         else {
-            $module = 'Plack::App::Status::'.$key;
+            $module = 'Plack::App::ServiceStatus::'.$key;
         }
         try {
             use_module($module);
@@ -101,9 +101,9 @@ __END__
 
   # using Plack::Builder with Plack::App::URLMap
   use Plack::Builder;
-  use Plack::App::Status;
+  use Plack::App::ServiceStatus;
 
-  my $status_app = Plack::App::Status->new(
+  my $status_app = Plack::App::ServiceStatus->new(
       app           => 'your app',
       DBIC          => $schema,
       Elasticsearch => $es, # instance of Search::Elasticsearch
@@ -117,10 +117,10 @@ __END__
 
   # using OX
   router as {
-      mount '/_status' => 'Plack::App::Status' => (
-          app              => literal(__PACKAGE__),
-          Redis            => 'redis',
-          '+MyApp::Status' => literal("foo"),
+      mount '/_status' => 'Plack::App::ServiceStatus' => (
+          app                     => literal(__PACKAGE__),
+          Redis                   => 'redis',
+          '+MyApp::ServiceStatus' => literal("foo"),
       );
       route '/some/endpoint' => 'some_controller.some_action';
       # ...
@@ -151,7 +151,7 @@ __END__
 
 =head1 DESCRIPTION
 
-C<Plack::App::Status> implements a small
+C<Plack::App::ServiceStatus> implements a small
 L<Plack|https://metacpan.org/pod/Plack> application that you can use
 to get some status info on your application and the services needed by
 it.
@@ -165,11 +165,11 @@ The following checks are currently available:
 
 =over
 
-=item * L<Plack::App::Status::DBIC>
+=item * L<Plack::App::ServiceStatus::DBIC>
 
-=item * L<Plack::App::Status::Redis>
+=item * L<Plack::App::ServiceStatus::Redis>
 
-=item * L<Plack::App::Status::Elasticsearch>
+=item * L<Plack::App::ServiceStatus::Elasticsearch>
 
 =back
 
@@ -182,10 +182,10 @@ sign, for example C<+My::App::SomeStatusCheck>.
 
 =head2 Weirdness
 
-The slightly strange way C<Plack::App::Status> is initiated is caused
+The slightly strange way C<Plack::App::ServiceStatus> is initiated is caused
 by the way L<OX|https://metacpan.org/pod/OX> works.
 
-C<Plack::App::Status> is B<not> implemented as a middleware on
+C<Plack::App::ServiceStatus> is B<not> implemented as a middleware on
 purpose. While middlewares are great for a lot of use cases, I think
 that here an embedded app is the better fit.
 
