@@ -173,6 +173,10 @@ The following checks are currently available:
 
 =back
 
+Each check consists of a C<name> and a C<status>. The status can be
+C<ok> or C<nok>. A check might also contain a C<message>, which should
+be some description of the error or problem if the status is C<nok>.
+
 You can add your own checks by specifying a name starting with a C<+>
 sign, for example C<+My::App::SomeStatusCheck>.
 
