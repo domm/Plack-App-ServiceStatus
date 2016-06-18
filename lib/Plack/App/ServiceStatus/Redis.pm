@@ -16,3 +16,18 @@ sub check {
 }
 
 1;
+
+__END__
+
+=head1 SYNOPSIS
+
+  my $redis      = Redis->new;
+  my $status_app = Plack::App::ServiceStatus->new(
+      app   => 'your app',
+      Redis => $redis,
+  );
+
+=head1 CHECK
+
+Calls C<ping> on the C<$redis> object.
+

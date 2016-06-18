@@ -156,7 +156,7 @@ __END__
 
 C<Plack::App::ServiceStatus> implements a small
 L<Plack|https://metacpan.org/pod/Plack> application that you can use
-to get some status info on your application and the services needed by
+to get some status info about your application and the services needed by
 it.
 
 You can then use some monitoring software to periodically check if
@@ -180,8 +180,16 @@ Each check consists of a C<name> and a C<status>. The status can be
 C<ok> or C<nok>. A check might also contain a C<message>, which should
 be some description of the error or problem if the status is C<nok>.
 
+Each check has to implement a method named C<check> which will be
+called with name of the class and the arguments you specified when
+setting up C<Plack::App::ServiceStatus>. C<check> has to return either
+the string C<ok>, or the string C<nok> and a string containing an
+explanation.
+
 You can add your own checks by specifying a name starting with a C<+>
-sign, for example C<+My::App::SomeStatusCheck>.
+sign, for example C<+My::App::SomeStatusCheck>. Or send me a pull
+request to include your check in this distribution, or just release it
+yourself!
 
 =head2 Weirdness
 
@@ -195,8 +203,6 @@ that here an embedded app is the better fit.
 =head1 TODO
 
 =over
-
-=item * proper documentation
 
 =item * tests
 

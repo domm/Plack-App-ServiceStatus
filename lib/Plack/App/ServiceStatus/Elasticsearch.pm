@@ -16,3 +16,18 @@ sub check {
 }
 
 1;
+
+__END__
+
+=head1 SYNOPSIS
+
+  my $es         = Search::Elasticsearch->new;
+  my $status_app = Plack::App::ServiceStatus->new(
+      app           => 'your app',
+      Elasticsearch => $es,
+  );
+
+=head1 CHECK
+
+Calls C<ping> on the C<$elasticsearch> object.
+
