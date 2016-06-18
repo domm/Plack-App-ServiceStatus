@@ -3,7 +3,7 @@ use 5.018;
 use strict;
 use warnings;
 
-our $VERSION = '0.900';
+our $VERSION = '0.901';
 
 # ABSTRACT: Check and report status of various services needed by your app
 
