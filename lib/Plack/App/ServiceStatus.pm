@@ -24,12 +24,12 @@ sub new {
     my @checks;
     while ( my ( $key, $value ) = each %args ) {
         my $module;
-        if ($key =~ /^\+/) {
+        if ( $key =~ /^\+/ ) {
             $module = $key;
-            $module=~s/^\+//;
+            $module =~ s/^\+//;
         }
         else {
-            $module = 'Plack::App::ServiceStatus::'.$key;
+            $module = 'Plack::App::ServiceStatus::' . $key;
         }
         try {
             use_module($module);
@@ -42,7 +42,8 @@ sub new {
             );
         }
         catch {
-            $log->errorf("%s: cannot init %s: %s",__PACKAGE__, $module, $_);
+            $log->errorf( "%s: cannot init %s: %s", __PACKAGE__, $module,
+                $_ );
         };
     }
 
@@ -72,7 +73,7 @@ sub to_app {
 
         foreach my $check ( @{ $self->checks } ) {
             my ( $status, $message ) = try {
-                return $check->{class}->check($check->{args});
+                return $check->{class}->check( $check->{args} );
             }
             catch {
                 return 'nok', "$_";
@@ -105,7 +106,7 @@ __END__
 
   my $status_app = Plack::App::ServiceStatus->new(
       app           => 'your app',
-      DBIC          => $schema,
+      DBIC          => [ $schema, 'select 1' ],
       Elasticsearch => $es, # instance of Search::Elasticsearch
   );
 
@@ -120,7 +121,9 @@ __END__
       mount '/_status' => 'Plack::App::ServiceStatus' => (
           app                     => literal(__PACKAGE__),
           Redis                   => 'redis',
-          '+MyApp::ServiceStatus' => literal("foo"),
+          '+MyApp::ServiceStatus' => {
+                foo => literal("foo")
+          },
       );
       route '/some/endpoint' => 'some_controller.some_action';
       # ...
@@ -128,7 +131,7 @@ __END__
 
 
   # checking the status
-  curl http://localhost:3000/_status  | json_pp
+  curl http://localhost:3000/_status | json_pp
   {
      "app" : "Your app",
      "started_at" : 1465823638,
