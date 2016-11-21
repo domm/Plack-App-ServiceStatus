@@ -174,6 +174,8 @@ The following checks are currently available:
 
 =item * L<Plack::App::ServiceStatus::Elasticsearch>
 
+=item * L<Plack::App::ServiceStatus::NetStomp>
+
 =back
 
 Each check consists of a C<name> and a C<status>. The status can be
