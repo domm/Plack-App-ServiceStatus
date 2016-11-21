@@ -3,7 +3,7 @@ use 5.018;
 use strict;
 use warnings;
 
-our $VERSION = '0.901';
+our $VERSION = '0.902';
 
 # ABSTRACT: Check and report status of various services needed by your app
 
@@ -222,6 +222,9 @@ Thanks to
 
 L<validad.com|http://www.validad.com/> for funding the
 development of this code.
+
+=item * <Manfred Stock|https://github.com/mstock> for adding
+Net::Stomp and a Icinga/Nagios check script.
 
 =back
 
