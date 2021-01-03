@@ -1,13 +1,14 @@
 package Plack::App::ServiceStatus::NetStomp;
+
+# ABSTRACT: Check Net::Stomp connection
+
+# VERSION
+
 use 5.018;
 use strict;
 use warnings;
 use Module::Runtime qw(require_module);
 use Try::Tiny;
-
-our $VERSION = '0.900';
-
-# ABSTRACT: Check Net::Stomp connection
 
 sub check {
     my ( $class, $stomp ) = @_;

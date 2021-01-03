@@ -1,6 +1,8 @@
 Changes for Plack::App::ServiceStatus
 
-0.904   not yet released
+{{$NEXT}}
+    - dist housekeeping: github issues,
+      Dist::Zilla::PluginBundle::Author::DOMM
     - Tidied up repo meta. (Mohammad S Anwar)
 
 

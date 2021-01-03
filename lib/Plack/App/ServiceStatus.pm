@@ -1,11 +1,12 @@
 package Plack::App::ServiceStatus;
+
+# ABSTRACT: Check and report status of various services needed by your app
+
+# VERSION
+
 use 5.018;
 use strict;
 use warnings;
-
-our $VERSION = '0.903';
-
-# ABSTRACT: Check and report status of various services needed by your app
 
 use base 'Class::Accessor::Fast';
 __PACKAGE__->mk_accessors(qw(app version checks));

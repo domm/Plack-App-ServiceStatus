@@ -1,1 +1,3 @@
 Plack-App-ServiceStatus-*
+local
+.build/

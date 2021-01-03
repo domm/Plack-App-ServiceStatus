@@ -1,11 +1,12 @@
 package Plack::App::ServiceStatus::DBIC;
+
+# ABSTRACT: Check DBIC connection
+
+# VERSION
+
 use 5.018;
 use strict;
 use warnings;
-
-our $VERSION = '0.900';
-
-# ABSTRACT: Check DBIC connection
 
 sub check {
     my ( $class, $args ) = @_;
