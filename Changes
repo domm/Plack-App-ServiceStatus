@@ -1,6 +1,8 @@
 Changes for Plack::App::ServiceStatus
 
 {{$NEXT}}
+
+0.904     2021-01-03 17:58:09+01:00
     - dist housekeeping: github issues,
       Dist::Zilla::PluginBundle::Author::DOMM
     - Tidied up repo meta. (Mohammad S Anwar)
