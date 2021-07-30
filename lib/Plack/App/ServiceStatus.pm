@@ -229,7 +229,9 @@ Thanks to
 L<validad.com|http://www.validad.com/> for funding the
 development of this code.
 
-=item * <Manfred Stock|https://github.com/mstock> for adding
+=item *
+
+L<Manfred Stock|https://github.com/mstock> for adding
 Net::Stomp and a Icinga/Nagios check script.
 
 =back
