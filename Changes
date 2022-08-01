@@ -1,6 +1,8 @@
 Changes for Plack::App::ServiceStatus
 
 {{$NEXT}}
+
+0.905     2022-08-01 15:58:12+02:00
     - add Checks for raw DBI and DBIx::Connector
 
 
