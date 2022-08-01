@@ -16,6 +16,7 @@ sub check {
     my $query = $args->[1] || 'select 1';
 
     my $sth = $dbh->prepare($query);
+    $sth->execute;
     my $ok = $sth->fetchrow_array;
     return 'ok' if $ok == 1;
     return 'nok', "got: $ok";

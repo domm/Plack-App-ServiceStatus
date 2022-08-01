@@ -174,7 +174,11 @@ The following checks are currently available:
 
 =over
 
-=item * L<Plack::App::ServiceStatus::DBIC>
+=item * L<Plack::App::ServiceStatus::DBI> - (raw DBI C<$dbh>)
+
+=item * L<Plack::App::ServiceStatus::DBIxConnector> - when using C<DBIx::Connector> to connect to a DB
+
+=item * L<Plack::App::ServiceStatus::DBIC> - when you're using C<DBIx::Class>
 
 =item * L<Plack::App::ServiceStatus::Redis>
 
