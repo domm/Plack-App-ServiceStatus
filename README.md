@@ -4,7 +4,7 @@ Plack::App::ServiceStatus - Check and report status of various services needed b
 
 # VERSION
 
-version 0.905
+version 0.906
 
 # SYNOPSIS
 
@@ -76,7 +76,9 @@ your app is running and has access to all needed services.
 
 The following checks are currently available:
 
-- [Plack::App::ServiceStatus::DBIC](https://metacpan.org/pod/Plack%3A%3AApp%3A%3AServiceStatus%3A%3ADBIC)
+- [Plack::App::ServiceStatus::DBI](https://metacpan.org/pod/Plack%3A%3AApp%3A%3AServiceStatus%3A%3ADBI) - (raw DBI `$dbh`)
+- [Plack::App::ServiceStatus::DBIxConnector](https://metacpan.org/pod/Plack%3A%3AApp%3A%3AServiceStatus%3A%3ADBIxConnector) - when using `DBIx::Connector` to connect to a DB
+- [Plack::App::ServiceStatus::DBIC](https://metacpan.org/pod/Plack%3A%3AApp%3A%3AServiceStatus%3A%3ADBIC) - when you're using `DBIx::Class`
 - [Plack::App::ServiceStatus::Redis](https://metacpan.org/pod/Plack%3A%3AApp%3A%3AServiceStatus%3A%3ARedis)
 - [Plack::App::ServiceStatus::Elasticsearch](https://metacpan.org/pod/Plack%3A%3AApp%3A%3AServiceStatus%3A%3AElasticsearch)
 - [Plack::App::ServiceStatus::NetStomp](https://metacpan.org/pod/Plack%3A%3AApp%3A%3AServiceStatus%3A%3ANetStomp)
