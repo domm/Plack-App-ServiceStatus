@@ -4,7 +4,7 @@ Plack::App::ServiceStatus - Check and report status of various services needed b
 
 # VERSION
 
-version 0.908
+version 0.909
 
 # SYNOPSIS
 
