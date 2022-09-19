@@ -2,6 +2,10 @@ Changes for Plack::App::ServiceStatus
 
 {{$NEXT}}
 
+0.908     2022-09-19 13:15:06+02:00
+    - less bug-prone way to pass args to object during new
+
+
 0.907     2022-09-19 12:56:06+02:00
     - show hostname in response (if show_hostname is set)
 
