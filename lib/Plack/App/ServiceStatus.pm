@@ -22,9 +22,10 @@ my $startup = time();
 
 sub new {
     my ( $class, %args ) = @_;
-    my $app = delete $args{app};
-    my $version = delete $args{version};
-    my @checks;
+
+    my %attr = map { $_ => delete $args{$_}} qw(app version show_hostname);
+    $attr{checks} = [];
+
     while ( my ( $key, $value ) = each %args ) {
         my $module;
         if ( $key =~ /^\+/ ) {
@@ -37,7 +38,7 @@ sub new {
         try {
             use_module($module);
             push(
-                @checks,
+                $attr{checks}->@*,
                 {   class => $module,
                     name  => $key,
                     args  => $value
@@ -50,12 +51,7 @@ sub new {
         };
     }
 
-    return bless {
-        app    => $app,
-        version => $version,
-        checks => \@checks,
-        show_hostname => $args{show_hostname} // 0,
-    }, $class;
+    return bless \%attr, $class;
 }
 
 sub to_app {
