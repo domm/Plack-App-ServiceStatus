@@ -1,6 +1,8 @@
 Changes for Plack::App::ServiceStatus
 
 {{$NEXT}}
+
+0.907     2022-09-19 12:56:06+02:00
     - show hostname in response (if show_hostname is set)
 
 
