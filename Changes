@@ -1,6 +1,8 @@
 Changes for Plack::App::ServiceStatus
 
 {{$NEXT}}
+    - show hostname in response (if show_hostname is set)
+
 
 0.906     2022-08-01 16:11:15+02:00
     - add Checks for raw DBI and DBIx::Connector
