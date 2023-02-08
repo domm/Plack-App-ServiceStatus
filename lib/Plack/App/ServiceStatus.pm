@@ -9,7 +9,7 @@ use strict;
 use warnings;
 
 use base 'Class::Accessor::Fast';
-__PACKAGE__->mk_accessors(qw(app version checks show_hostname));
+__PACKAGE__->mk_accessors(qw(app version checks show_hostname buildinfo));
 
 use Try::Tiny;
 use Plack::Response;
@@ -17,13 +17,14 @@ use JSON::MaybeXS;
 use Sys::Hostname qw(hostname);
 use Module::Runtime qw(use_module);
 use Log::Any qw($log);
+use Path::Tiny;
 
 my $startup = time();
 
 sub new {
     my ( $class, %args ) = @_;
 
-    my %attr = map { $_ => delete $args{$_}} qw(app version show_hostname);
+    my %attr = map { $_ => delete $args{$_}} qw(app version show_hostname buildinfo);
     $attr{checks} = [];
 
     while ( my ( $key, $value ) = each %args ) {
@@ -57,6 +58,21 @@ sub new {
 sub to_app {
     my $self = shift;
 
+    my $hostname = $self->show_hostname ? hostname() : '';
+
+    my $buildinfo;
+    if ($self->buildinfo) {
+        if (-f $self->buildinfo) {
+            $buildinfo = eval { decode_json(path($self->buildinfo)->slurp_utf8) };
+            if ($@) {
+                $buildinfo = { status=>'error', message=>$@ };
+            }
+        }
+        else {
+            $buildinfo = { status=>'error', message=>'cannot read buildinfo from '.$self->buildinfo };
+        }
+    }
+
     my $app = sub {
         my $env = shift;
 
@@ -66,7 +82,8 @@ sub to_app {
             uptime     => time() - $startup,
         };
         $json->{version} = $self->version;
-        $json->{hostname} = hostname() if $self->show_hostname;
+        $json->{hostname} = $hostname if $hostname;
+        $json->{buildinfo} = $buildinfo if $buildinfo;
 
         my @results = (
             {   name   => $self->app,
