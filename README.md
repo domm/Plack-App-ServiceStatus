@@ -4,7 +4,7 @@ Plack::App::ServiceStatus - Check and report status of various services needed b
 
 # VERSION
 
-version 0.909
+version 0.910
 
 # SYNOPSIS
 
@@ -135,7 +135,6 @@ that here an embedded app is the better fit.
 
 # TODO
 
-- tests
 - make sure the app is only initiated once when running in OX
 
 # THANKS
