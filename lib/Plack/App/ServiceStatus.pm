@@ -18,13 +18,15 @@ use Sys::Hostname qw(hostname);
 use Module::Runtime qw(use_module);
 use Log::Any qw($log);
 use Path::Tiny;
+use POSIX qw(strftime);
 
 my $startup = time();
 
 sub new {
     my ( $class, %args ) = @_;
 
-    my %attr = map { $_ => delete $args{$_}} qw(app version show_hostname buildinfo);
+    my %attr =
+      map { $_ => delete $args{$_} } qw(app version show_hostname buildinfo);
     $attr{checks} = [];
 
     while ( my ( $key, $value ) = each %args ) {
@@ -40,15 +42,15 @@ sub new {
             use_module($module);
             push(
                 $attr{checks}->@*,
-                {   class => $module,
+                {
+                    class => $module,
                     name  => $key,
                     args  => $value
                 }
             );
         }
         catch {
-            $log->errorf( "%s: cannot init %s: %s", __PACKAGE__, $module,
-                $_ );
+            $log->errorf( "%s: cannot init %s: %s", __PACKAGE__, $module, $_ );
         };
     }
 
@@ -61,15 +63,19 @@ sub to_app {
     my $hostname = $self->show_hostname ? hostname() : '';
 
     my $buildinfo;
-    if ($self->buildinfo) {
-        if (-f $self->buildinfo) {
-            $buildinfo = eval { decode_json(path($self->buildinfo)->slurp_utf8) };
+    if ( $self->buildinfo ) {
+        if ( -f $self->buildinfo ) {
+            $buildinfo =
+              eval { decode_json( path( $self->buildinfo )->slurp_utf8 ) };
             if ($@) {
-                $buildinfo = { status=>'error', message=>$@ };
+                $buildinfo = { status => 'error', message => $@ };
             }
         }
         else {
-            $buildinfo = { status=>'error', message=>'cannot read buildinfo from '.$self->buildinfo };
+            $buildinfo = {
+                status  => 'error',
+                message => 'cannot read buildinfo from ' . $self->buildinfo
+            };
         }
     }
 
@@ -77,16 +83,18 @@ sub to_app {
         my $env = shift;
 
         my $json = {
-            app        => $self->app,
-            started_at => $startup,
-            uptime     => time() - $startup,
+            app                => $self->app,
+            started_at_iso8601 => strftime( '%FT%TZ', gmtime($startup) ),
+            started_at         => $startup,
+            uptime             => time() - $startup,
         };
-        $json->{version} = $self->version;
-        $json->{hostname} = $hostname if $hostname;
+        $json->{version}   = $self->version;
+        $json->{hostname}  = $hostname  if $hostname;
         $json->{buildinfo} = $buildinfo if $buildinfo;
 
         my @results = (
-            {   name   => $self->app,
+            {
+                name   => $self->app,
                 status => 'ok',
             }
         );
@@ -261,8 +269,6 @@ that here an embedded app is the better fit.
 =head1 TODO
 
 =over
-
-=item * tests
 
 =item * make sure the app is only initiated once when running in OX
 

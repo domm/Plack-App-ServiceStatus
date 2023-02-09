@@ -11,32 +11,35 @@ use POSIX qw(strftime);
 use Getopt::Long;
 use Pod::Usage;
 
-my $man = 0;
-my $help = 0;
-my $buildinfo_file   = "./buildinfo.json";
-my $project_dir='';
-GetOptions (
-'help|?' => \$help, man => \$man,
+my $man            = 0;
+my $help           = 0;
+my $buildinfo_file = "./buildinfo.json";
+my $project_dir    = '';
+GetOptions(
+    'help|?'    => \$help,
+    man         => \$man,
     "project=s" => \$project_dir,
-            "output:s" => \$buildinfo_file,
+    "output:s"  => \$buildinfo_file,
 ) or pod2usage(2);
-pod2usage(1) if $help;
-pod2usage(-exitval => 0, -verbose => 2) if $man;
+pod2usage(1)                              if $help;
+pod2usage( -exitval => 0, -verbose => 2 ) if $man;
 
 die "required param --project missing" unless $project_dir;
 
-die "Cannot find project directory at $project_dir" unless $project_dir && -d $project_dir;
-open(my $out, ">", $buildinfo_file) || die "Cannot write to $buildinfo_file: $!";
+die "Cannot find project directory at $project_dir"
+  unless $project_dir && -d $project_dir;
+open( my $out, ">", $buildinfo_file )
+  || die "Cannot write to $buildinfo_file: $!";
 
 chdir($project_dir);
 
-my $data = '{'; # just concat the JSON :-)
+my $data = '{';    # just concat the JSON :-)
 
-my $now = strftime('%FT%TZ', gmtime(time()));
-$data.=qq{"date":"$now"};
+my $now = strftime( '%FT%TZ', gmtime( time() ) );
+$data .= qq{"date":"$now"};
 
 my $has_git = `git --version`;
-if ($has_git =~ /^git version/) {
+if ( $has_git =~ /^git version/ ) {
     my $commit = `git rev-parse HEAD`;
     my $branch = `git rev-parse --abbrev-ref HEAD`;
     chomp($commit);
@@ -44,7 +47,7 @@ if ($has_git =~ /^git version/) {
     $data .= qq{, "git-commit":"$commit", "git-branch": "$branch"};
 }
 
-$data.='}';
+$data .= '}';
 
 print $out $data;
 close $out;
