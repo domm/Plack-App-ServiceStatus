@@ -74,13 +74,29 @@ your app is running and has access to all needed services.
 
 ## Options to new
 
+- name
+
+    The name of your app.
+
 - version
 
-    Set the version of your app.
+    The version of your app.
+
+    item \* DBI, DBIxConnector, DBIC, Redis, Elasticsearch, NetStomp
+
+    Enable and configure a check, see [Checks](https://metacpan.org/pod/Checks) below
 
 - show\_hostname
 
     If set to a true value, show the hostname.
+
+- buildinfo
+
+    Path to a `buildinfo.json` JSON file containing information on
+    when/how the app was built. See
+    ["plack\_app\_service\_status\_generate\_buildinfo.pl" in bin](https://metacpan.org/pod/bin#plack_app_service_status_generate_buildinfo.pl) for a script
+    that will generate a `buildinfo.json` containing the build date, git
+    commit and git branch.
 
 ## Checks
 
@@ -126,10 +142,11 @@ that here an embedded app is the better fit.
 
 Thanks to
 
-- [validad.com](http://www.validad.com/) for funding the
+- [validad.com](https://www.validad.com/) for funding the
 development of this code.
 - <Manfred Stock|https://github.com/mstock> for adding
 Net::Stomp and a Icinga/Nagios check script.
+- [VÖV / Knowledgebase Erwachsenenbildung](https://adulteducation.at/) for the buildinfo feature.
 
 # AUTHOR
 
