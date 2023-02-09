@@ -283,7 +283,9 @@ Thanks to
 =item * L<validad.com|https://www.validad.com/> for funding the
 development of this code.
 
-=item * <Manfred Stock|https://github.com/mstock> for adding
+=item *
+
+L<Manfred Stock|https://github.com/mstock> for adding
 Net::Stomp and a Icinga/Nagios check script.
 
 =item * L<VÖV / Knowledgebase Erwachsenenbildung|https://adulteducation.at/> for the buildinfo feature.
