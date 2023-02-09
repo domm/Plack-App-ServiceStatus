@@ -188,13 +188,29 @@ your app is running and has access to all needed services.
 
 =over
 
+=item * name
+
+The name of your app.
+
 =item * version
 
-Set the version of your app.
+The version of your app.
+
+item * DBI, DBIxConnector, DBIC, Redis, Elasticsearch, NetStomp
+
+Enable and configure a check, see L<Checks> below
 
 =item * show_hostname
 
 If set to a true value, show the hostname.
+
+=item * buildinfo
+
+Path to a C<buildinfo.json> JSON file containing information on
+when/how the app was built. See
+L<bin/plack_app_service_status_generate_buildinfo.pl> for a script
+that will generate a C<buildinfo.json> containing the build date, git
+commit and git branch.
 
 =back
 
@@ -258,13 +274,13 @@ Thanks to
 
 =over
 
-=item *
-
-L<validad.com|http://www.validad.com/> for funding the
+=item * L<validad.com|https://www.validad.com/> for funding the
 development of this code.
 
 =item * <Manfred Stock|https://github.com/mstock> for adding
 Net::Stomp and a Icinga/Nagios check script.
+
+=item * L<VÖV / Knowledgebase Erwachsenenbildung|https://adulteducation.at/> for the buildinfo feature.
 
 =back
 
