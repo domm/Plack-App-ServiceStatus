@@ -13,7 +13,7 @@ requires "Pod::Usage" => "0";
 requires "Sys::Hostname" => "0";
 requires "Try::Tiny" => "0";
 requires "base" => "0";
-requires "perl" => "5.018";
+requires "perl" => "5.024";
 
 on 'build' => sub {
   requires "Module::Build" => "0.28";

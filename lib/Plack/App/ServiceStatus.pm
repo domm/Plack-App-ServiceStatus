@@ -4,7 +4,7 @@ package Plack::App::ServiceStatus;
 
 # VERSION
 
-use 5.018;
+use 5.024;
 use strict;
 use warnings;
 
