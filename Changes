@@ -2,6 +2,12 @@ Changes for Plack::App::ServiceStatus
 
 {{$NEXT}}
 
+0.911     2023-02-14 20:58:04+01:00
+    - use more complex strftime format, which is also more portable (Thomas Klausner)
+    - bump perl req to 5.24 so i can use postfix deref (Thomas Klausner)
+    - Fixed minor pod typo. (Mohammad S Anwar)
+
+
 0.910     2023-02-09 21:41:03+01:00
     - add started_at_iso8601 human readable timestamp (Thomas Klausner)
 
