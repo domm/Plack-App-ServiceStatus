@@ -22,7 +22,7 @@ subtest 'basic status data' => sub {
     like(
         $status->{started_at_iso8601},
         qr/^\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\dZ$/,
-        'started_at looks like ISO8601'
+        'started_at looks like ISO8601: '.$status->{started_at_iso8601}
     );
 };
 

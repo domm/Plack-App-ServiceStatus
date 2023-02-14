@@ -4,7 +4,7 @@ Plack::App::ServiceStatus - Check and report status of various services needed b
 
 # VERSION
 
-version 0.910
+version 0.911
 
 # SYNOPSIS
 
@@ -143,7 +143,7 @@ Thanks to
 
 - [validad.com](https://www.validad.com/) for funding the
 development of this code.
-- <Manfred Stock|https://github.com/mstock> for adding
+- [Manfred Stock](https://github.com/mstock) for adding
 Net::Stomp and a Icinga/Nagios check script.
 - [VÖV / Knowledgebase Erwachsenenbildung](https://adulteducation.at/) for the buildinfo feature.
 

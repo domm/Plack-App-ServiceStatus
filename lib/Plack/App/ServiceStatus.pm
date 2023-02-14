@@ -84,7 +84,7 @@ sub to_app {
 
         my $json = {
             app                => $self->app,
-            started_at_iso8601 => strftime( '%FT%TZ', gmtime($startup) ),
+            started_at_iso8601 => strftime( '%Y-%m-%dT%H:%M:%SZ', gmtime($startup) ),
             started_at         => $startup,
             uptime             => time() - $startup,
         };

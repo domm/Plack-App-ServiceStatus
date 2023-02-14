@@ -35,7 +35,7 @@ chdir($project_dir);
 
 my $data = '{';    # just concat the JSON :-)
 
-my $now = strftime( '%FT%TZ', gmtime( time() ) );
+my $now = strftime( '%Y-%m-%dT%H:%M:%SZ', gmtime( time() ) );
 $data .= qq{"date":"$now"};
 
 my $has_git = `git --version`;
