@@ -1,7 +1,6 @@
 Changes for Plack::App::ServiceStatus
 
 {{$NEXT}}
-0.912     2023-11-27 14:23:39+01:00
     - added to_app to example in SYNOPIS (Thomas Klausner)
 
 
