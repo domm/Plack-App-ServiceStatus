@@ -137,7 +137,7 @@ __END__
       version       => '1.42',
       DBIC          => [ $schema, 'select 1' ],
       Elasticsearch => $es, # instance of Search::Elasticsearch
-  );
+  )->to_app;
 
   builder {
     mount "/_status" => $status_app;
@@ -153,6 +153,7 @@ __END__
           '+MyApp::ServiceStatus' => {
                 foo => literal("foo")
           },
+          buildinfo => literal('buildinfo.json'),
       );
       route '/some/endpoint' => 'some_controller.some_action';
       # ...
