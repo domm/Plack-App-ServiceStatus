@@ -1,6 +1,8 @@
 Changes for Plack::App::ServiceStatus
 
 {{$NEXT}}
+
+0.913     2024-01-25 11:00:09+01:00
     - read buildinfo during new() (Thomas Klausner)
 
 
